@@ -5,7 +5,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello and welcome!");
+        System.out.println("Hello and welcome!\n");
 
         Maze MyMaze = new Maze();
 
@@ -39,9 +39,10 @@ public class Main {
         MyMaze.start = MyMaze.buildMaze(MyMaze.start, matrix, marks, 0 ,0);
 
         // Find original creation matrix from maze topology
-        mazeRepresentation = MyMaze.getMazeRepresentation(MyMaze.start, 0, 0, 3, 3, mazeRepresentation);
+        mazeRepresentation = MyMaze.getMazeRepresentation(MyMaze.start, 0, 0, 5, 5, mazeRepresentation);
 
         // Print original creation matrix
+        System.out.println();
         for (int i=0; i<5; i++)
         {
             for (int j=0; j<5; j++)
@@ -51,7 +52,8 @@ public class Main {
             }
             System.out.println();
         }
+        System.out.println();
 
-        MyMaze.start.show();
+        //MyMaze.start.show();
     }
 }

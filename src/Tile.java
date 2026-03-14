@@ -4,11 +4,6 @@ public class Tile {
     Tile left;
     Tile below;
 
-    boolean isTileLeft =    this.left != null;
-    boolean isTileRight =   this.right != null;
-    boolean isTileAbove =      this.above != null;
-    boolean isTileBelow =    this.below != null;
-
     Tile getLeft()
     {
         return this.left;
@@ -36,9 +31,13 @@ public class Tile {
         this.left = null;
     }
 
-
-
     void show(){
+
+        boolean isTileLeft =    this.left != null;
+        boolean isTileRight =   this.right != null;
+        boolean isTileAbove =   this.above != null;
+        boolean isTileBelow =   this.below != null;
+
         System.out.println("I have a tile left: " + Boolean.toString(isTileLeft));
 
         System.out.println("I have a tile right: "+ Boolean.toString(isTileRight));

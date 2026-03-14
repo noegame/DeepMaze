@@ -43,7 +43,7 @@ public class Maze {
         int val = matrix[i][j];
 
         boolean noConnection    = val == 0;
-        boolean connectAbove    = val == 1  || val == 5  || val == 6  || val == 7  || val == 11 || val == 12 || val == 1 || val == 15;
+        boolean connectAbove    = val == 1  || val == 5  || val == 6  || val == 7  || val == 11 || val == 12 || val == 13 || val == 15;
         boolean connectBelow    = val == 3  || val == 5  || val == 8  || val == 9  || val == 11 || val == 12 || val == 14 || val == 15;
         boolean connectLeft     = val == 2  || val == 6  || val == 8  || val == 10 || val == 11 || val == 13 || val == 14 || val == 15;
         boolean connectRight    = val == 4  || val == 7  || val == 9  || val == 10 || val == 12 || val == 13 || val == 14 || val == 15;
@@ -54,26 +54,30 @@ public class Maze {
 
         if ((connectAbove && i > 0) && (!marks[i - 1][j])) {
             tile.above = new Tile();
+            tile.above.below = tile;
             buildMaze(tile.above, matrix, marks, i - 1, j);
-            System.out.println(i + ", " + j + ": I have a connection above !");
+            //System.out.println(i + ", " + j + ": I have a connection above !");
         }
 
         if ((connectBelow && i < matrix.length - 1) && (!marks[i + 1][j])) {
             tile.below = new Tile();
+            tile.below.above = tile;
             buildMaze(tile.below, matrix, marks, i + 1, j);
-            System.out.println(i + ", " + j + ": I have a connection below !");
+            //System.out.println(i + ", " + j + ": I have a connection below !");
         }
 
         if ((connectLeft && j > 0) && (!marks[i][j - 1])) {
             tile.left = new Tile();
+            tile.left.right = tile;
             buildMaze(tile.left, matrix, marks, i, j - 1);
-            System.out.println(i + ", " + j + ": I have a left connection !");
+            //System.out.println(i + ", " + j + ": I have a left connection !");
         }
 
         if ((connectRight && j < matrix[0].length - 1) && (!marks[i][j + 1])) {
             tile.right = new Tile();
+            tile.right.left = tile;
             buildMaze(tile.right, matrix, marks, i, j + 1);
-            System.out.println(i + ", " + j + ": I have a right connection !");
+            //System.out.println(i + ", " + j + ": I have a right connection !");
         }
         return tile;
     }
@@ -94,10 +98,10 @@ public class Maze {
         boolean isALeftTile    = (tile.left != null);
         boolean isARightTile   = (tile.right != null);
         
-        boolean isATileAboveToVisit   = isATileAbove      && (i > 0)             && (visited[i - 1][j] != 0);
-        boolean isATileBelowToVisit   = isATileBelow      && (i < sizeY - 1)     && (visited[i + 1][j] != 0);
-        boolean isALeftTileToVisit    = isALeftTile       && (j > 0)             && (visited[i][j - 1] != 0);
-        boolean isARightTileToVisit   = isARightTile      && (j < sizeX - 1)     && (visited[i][j + 1] != 0);
+        boolean isATileAboveToVisit   = isATileAbove      && (i > 0)             && (visited[i - 1][j] == 0);
+        boolean isATileBelowToVisit   = isATileBelow      && (i < sizeY - 1)     && (visited[i + 1][j] == 0);
+        boolean isALeftTileToVisit    = isALeftTile       && (j > 0)             && (visited[i][j - 1] == 0);
+        boolean isARightTileToVisit   = isARightTile      && (j < sizeX - 1)     && (visited[i][j + 1] == 0);
 
         boolean is_0   = !isATileAbove && !isALeftTile && !isATileBelow && !isARightTile;
         boolean is_1   = isATileAbove && !isATileBelow && !isALeftTile && !isARightTile;
@@ -135,7 +139,7 @@ public class Maze {
         if (is_14){visited[i][j] = 14;}
         if (is_15){visited[i][j] = 15;}
 
-        System.out.println("Visited tile at (" + i + ", " + j + ") with value: " + visited[i][j]);
+        //System.out.println("Visited tile at (" + i + ", " + j + ") with value: " + visited[i][j]);
 
         // STEP 2 : VISIT NEIGHTBOUR TILE
 
