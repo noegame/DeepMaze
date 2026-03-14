@@ -1,15 +1,57 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * {@code @Author} : Noé Game
+ */
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("Hello and welcome!");
+
+        Maze MyMaze = new Maze();
+
+        // Creation Matrix
+        int[][] matrix = {
+                { 16, 16, 16, 0,  0},
+                { 0,  0, 16,  0,  0},
+                { 0,  0, 16,  0,  0},
+                { 0, 16, 16,  0,  0},
+                { 0,  0,  0,  0,  0}
+        };
+
+        boolean[][] marks = {
+            {false, false, false, false, false},
+            {false, false, false, false, false},
+            {false, false, false, false, false},
+            {false, false, false, false, false},
+            {false, false, false, false, false}
+        };
+
+        int[][] mazeRepresentation = {
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0}
+        };
+
+
+        // Create the Maze
+        MyMaze.buildMaze(MyMaze.start, matrix, marks, 0 ,0);
+
+        // Find original creation matrix from maze topology
+        mazeRepresentation = MyMaze.getMazeRepresentation(MyMaze.start, 0, 0, 3, 3, mazeRepresentation);
+
+        // Print original creation matrix
+        for (int i=0; i<5; i++)
+        {
+            for (int j=0; j<5; j++)
+            {
+                System.out.print(mazeRepresentation[i][j]);
+                System.out.print(" ");
+            }
+            System.out.println("");
         }
+
+
     }
 }
