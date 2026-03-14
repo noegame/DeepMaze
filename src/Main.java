@@ -11,10 +11,10 @@ public class Main {
 
         // Creation Matrix
         int[][] matrix = {
-                { 16, 16, 16, 0,  0},
-                { 0,  0, 16,  0,  0},
-                { 0,  0, 16,  0,  0},
-                { 0, 16, 16,  0,  0},
+                { 4, 10,  8, 0,  0},
+                { 0,  0, 15,  0,  0},
+                { 0,  0, 15,  0,  0},
+                { 0, 15, 15,  0,  0},
                 { 0,  0,  0,  0,  0}
         };
 
@@ -36,7 +36,7 @@ public class Main {
 
 
         // Create the Maze
-        MyMaze.buildMaze(MyMaze.start, matrix, marks, 0 ,0);
+        MyMaze.start = MyMaze.buildMaze(MyMaze.start, matrix, marks, 0 ,0);
 
         // Find original creation matrix from maze topology
         mazeRepresentation = MyMaze.getMazeRepresentation(MyMaze.start, 0, 0, 3, 3, mazeRepresentation);
@@ -49,9 +49,9 @@ public class Main {
                 System.out.print(mazeRepresentation[i][j]);
                 System.out.print(" ");
             }
-            System.out.println("");
+            System.out.println();
         }
 
-
+        MyMaze.start.show();
     }
 }
