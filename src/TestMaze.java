@@ -3,6 +3,7 @@ public class TestMaze {
     public static void main(String args[]) {
 
         test1();
+        test2();
 
     }
 
@@ -51,14 +52,27 @@ public class TestMaze {
         System.out.println("PASS    Matrice de création bien retrouvé depuis le labyrinthe");
     }
 
+
     static void test1() {
 
         int[][] creationMatrix = {
                 {4, 10, 8, 0, 0},
                 {0, 0, 5, 0, 0},
                 {0, 0, 5, 0, 0},
-                {0, 4, 6, 0, 0},
-                {0, 0, 0, 0, 0}
+                {0, 9, 6, 0, 0},
+                {0, 1, 0, 0, 0}
+        };
+
+        testMatrix(creationMatrix);
+    }
+    static void test2() {
+
+        int[][] creationMatrix = {
+                {4, 10, 8, 0, 0},
+                {0, 0, 5, 0, 0},
+                {0, 0, 5, 0, 0},
+                {0, 9, 6, 0, 0},
+                {0, 4, 0, 0, 0}
         };
 
         testMatrix(creationMatrix);
