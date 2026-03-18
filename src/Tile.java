@@ -7,7 +7,7 @@ public class Tile {
     Tile getLeft()
     {
         return this.left;
-    }
+    }   
 
     Tile getRight()
     {

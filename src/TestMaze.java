@@ -1,66 +1,67 @@
 public class TestMaze {
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
+
+        test1();
 
     }
 
-    {
 
+    static void testMatrix(int[][] creationMatrix) {
 
-}
-    Maze MyMaze = new Maze();
+        Maze MyMaze = new Maze();
 
-    // Creation Matrix
-    int[][] matrix = {
-            {4, 10, 8, 0, 0},
-            {0, 0, 15, 0, 0},
-            {0, 0, 15, 0, 0},
-            {0, 15, 15, 0, 0},
-            {0, 0, 0, 0, 0}
-    };
+        boolean[][] marks = {
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, false, false, false}
+        };
 
-    boolean[][] marks = {
-            {false, false, false, false, false},
-            {false, false, false, false, false},
-            {false, false, false, false, false},
-            {false, false, false, false, false},
-            {false, false, false, false, false}
-    };
+        int[][] mazeRepresentation = {
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0}
+        };
 
-    int[][] mazeRepresentation = {
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0}
-    };
+        // On a construit le labyrinthe.
+        MyMaze.start = MyMaze.buildMaze(MyMaze.start, creationMatrix, marks, 0, 0);
 
+        // Find original creation matrix from maze topology
+        mazeRepresentation = MyMaze.getMazeRepresentation(MyMaze.start, 0, 0, 5, 5, mazeRepresentation);
 
+        System.out.println("\nMatrice de création");
+        MyMaze.printMatrix(creationMatrix);
+        System.out.println("\nMatrice retrouvé");
+        MyMaze.printMatrix(mazeRepresentation);
 
-    // Print original creation matrix
-    boolean sontIdentiques = true;
-
-    // Vérification des dimensions
-        if (matrix.length != mazeRepresentation.length || matrix[0].length != matrice2[0].length) {
-        sontIdentiques = false;
-    } else {
-        // Comparaison élément par élément
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j] != matrice2[i][j]) {
-                    sontIdentiques = false;
-                    break;
+        boolean equal = true;
+        for (int i = 0; i < creationMatrix.length; i++) {
+            for (int j = 0; j < creationMatrix[0].length; j++) {
+                if (creationMatrix[i][j] != mazeRepresentation[i][j]) {
+                    equal = false;
+                    System.out.println("FAIL    Matrice de création non retrouvé depuis le labyrinthe");
+                    return;
                 }
             }
-            if (!sontIdentiques) break;
         }
+        System.out.println("PASS    Matrice de création bien retrouvé depuis le labyrinthe");
     }
 
+    static void test1() {
 
+        int[][] creationMatrix = {
+                {4, 10, 8, 0, 0},
+                {0, 0, 5, 0, 0},
+                {0, 0, 5, 0, 0},
+                {0, 4, 6, 0, 0},
+                {0, 0, 0, 0, 0}
+        };
+
+        testMatrix(creationMatrix);
+    }
 }
-
-
-
-
-
 

@@ -83,7 +83,7 @@ public class Maze {
     }
 
     /**
-     * @brief           Return a matrix that represent where there is a non null tile in the maze
+     * @brief           Find the construction matrix from the origin tile
      * @param tile      The current tile being processed
      * @param i         Current row index
      * @param j         Current column index
@@ -162,4 +162,23 @@ public class Maze {
         return visited;
 
     }
+
+    /**
+     * Print une matrice
+     */
+    void printMatrix(int[][] matrix){
+        System.out.println();
+        for (int i=0; i<5; i++)
+        {
+            for (int j=0; j<5; j++)
+            {
+                System.out.print(matrix[i][j]);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }
+
+
